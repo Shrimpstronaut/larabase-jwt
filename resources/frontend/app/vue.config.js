@@ -15,5 +15,6 @@ module.exports = {
     chainWebpack: (config) => {
         // disable webpacks default prefetch-tag to enable vue/chunk lazy-loading
         config.plugins.delete('prefetch')
+        config.plugins.delete('hmr');
     }
 }
