@@ -48,6 +48,11 @@ Create a unique application key
 php artisan key:generate
 ```
 
+Next create a JWT secret
+```
+php artisan jwt:secret
+```
+
 Continue modifying the configuration to match your environment.
 
 ## Useful commands during development
