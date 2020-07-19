@@ -27,11 +27,36 @@ Next install the required frontend dependencies
 ```
 npm install
 ```
+## Configuration
+Create a copy of `.env.example` and name it `.env`. This file will hold your application configuration.
+
+Create and/or enter the database connection details inside your `.env` config.
+
+<details>
+    <summary>Sample config</summary>
+    
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=XXX
+</details> 
+
+Create a unique application key
+```
+php artisan key:generate
+```
+
+Continue modifying the configuration to match your environment.
+
+## Useful commands during development
 
 Start a local development server using
 ```
 php artisan serve
 ```
+(add --host and --port to change parameters, **default: 127.0.0.1 port 8000**)
 
 ## Guides and Resources
 
