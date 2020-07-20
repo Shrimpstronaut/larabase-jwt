@@ -13,6 +13,9 @@
                         <b-message v-if="isLogout" class="is-success">
                             Logout successful
                         </b-message>
+                        <b-message v-if="isRegister" class="is-success">
+                            Registration successful!
+                        </b-message>
                         <b-field label="Email">
                             <b-input type="email" v-model="login.email">
                             </b-input>
@@ -67,7 +70,10 @@
         },
         computed: {
             isLogout: function () {
-                return this.$route.query.logout === null;
+                return this.$route.query.logout === null
+            },
+            isRegister: function () {
+                return this.$route.query.register === null
             }
         },
         methods: {
@@ -75,28 +81,20 @@
                 authenticate: 'login',
                 fetchUser: 'fetchUser'
             }),
-            removeLogoutQuery() {
-                if (this.isLogout) {
-                    this.$router.replace({'query': null});
-                }
-            },
             submit() {
-                this.removeLogoutQuery()
+                // replace possible ?login or ?register queries to hide messages
+                if (Object.keys(this.$route.query).length) // TODO refactor check for query params
+                    this.$router.replace({query: {}})
                 this.process.loading = true
                 this.process.error = null
 
                 this.authenticate(this.login)
-                    .then(() => {
-                        this.fetchUser()
-                            .then(() => {
-                                this.$router.replace({name: 'dashboard'})
-                            })
-                            .finally(() => this.process.loading = false)
-                    })
-                    .catch((e) => {
-                        this.process.errors = e.response.data
-                        this.process.loading = false
-                    });
+                    .then(() =>
+                        this.$router.push({name: 'dashboard'}))
+                    .catch((e) =>
+                        this.process.errors = e.response.data)
+                    .finally(() =>
+                        this.process.loading = false);
             }
         }
     }
