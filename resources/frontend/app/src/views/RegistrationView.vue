@@ -8,7 +8,7 @@
                     </h1>
                     <div class="box">
                         <b-message v-if="process.errors" class="is-danger">
-                            <p v-for="error in process.errors" :key="error">{{error[0]}}</p>
+                            <p v-for="error of process.errors">{{error[0]}}</p>
                         </b-message>
                         <b-field label="Name">
                             <b-input type="text" v-model="accountDetails.name">
@@ -74,20 +74,20 @@
                 register: 'register'
             }),
 
-            async submit() {
+            submit: function () {
                 this.process.loading = true // start loading indicator
                 this.process.errors = null // reset previous errors
 
-                try {
-                    await this.register(this.accountDetails);
-                } catch (e) {
-                    this.process.errors = e.response.data.errors
-                    return
-                } finally {
-                    this.process.loading = false // stop loading indicator after async call
-                }
-
-                await this.$router.replace({name: 'register_confirm'})
+                this.register(this.accountDetails)
+                    .then(() =>
+                        this.$router.replace({name: 'login', query: {register: null}})
+                    )
+                    .catch((e) =>
+                        this.process.errors = e.response.data.errors
+                    )
+                    .finally(() =>
+                        this.process.loading = false // stop loading indicator after async call
+                    )
             }
         }
     }
