@@ -15,6 +15,12 @@ export const auth = {
         }
     },
     actions: {
+        register({commit}, account) {
+            return axios.post('/api/auth/register', account)
+                .then((response) => {
+                    return response.data
+                })
+        },
         login({commit}, credentials) {
             return axios.post('/api/auth/login', credentials)
                 .then((response) => {
