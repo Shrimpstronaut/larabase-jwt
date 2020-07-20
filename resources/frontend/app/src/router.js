@@ -9,6 +9,7 @@ import LoginView from "./views/LoginView";
 import RegistrationView from "./views/RegistrationView";
 import store from "./store"
 import PageNotFoundView from "./views/PageNotFoundView";
+import ProfileView from "./views/ProfileView";
 
 Vue.use(Router);
 
@@ -50,8 +51,12 @@ const router = new Router({
                 {
                     path: '',
                     name: 'dashboard',
-                    meta: {requiresAuth: true},
                     component: DashboardView,
+                },
+                {
+                    path: 'profile',
+                    name: 'profile',
+                    component: ProfileView,
                 }
             ]
         },

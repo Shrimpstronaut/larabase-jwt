@@ -25,7 +25,7 @@
 
         <template slot="end">
             <b-navbar-dropdown :label="user ? user.name : ''">
-                <b-navbar-item tag="router-link" :to="{name: 'dashboard'}" class="navbar-item">
+                <b-navbar-item tag="router-link" :to="{name: 'profile'}" class="navbar-item">
                     Profile
                 </b-navbar-item>
                 <b-navbar-item class="navbar-item" v-on:click="logout">
