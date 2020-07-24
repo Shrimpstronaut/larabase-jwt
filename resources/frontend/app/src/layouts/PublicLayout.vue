@@ -7,7 +7,9 @@
                 </b-navbar-item>
             </template>
             <template slot="start">
-                <b-navbar-item tag="router-link" :to="{name: 'dashboard'}"
+                <b-navbar-item tag="router-link"
+                               v-if="isAuthenticated"
+                               :to="{name: 'dashboard'}"
                                class="navbar-item is-size-5">
                     Dashboard
                 </b-navbar-item>
@@ -33,8 +35,15 @@
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+
     export default {
-        name: "PublicLayout"
+        name: "PublicLayout",
+        computed: {
+            ...mapGetters({
+                isAuthenticated: 'isAuthenticated'
+            })
+        }
     }
 </script>
 
