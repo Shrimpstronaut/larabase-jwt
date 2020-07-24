@@ -34,7 +34,7 @@
                                 !accountDetails.password &&
                                 !accountDetails.password_confirmation &&
                                 !accountDetails.name">
-                                Register
+                                Registration is currently disabled
                             </b-button>
                         </b-field>
                         <b-field>
