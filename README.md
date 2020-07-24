@@ -6,6 +6,7 @@ This project aims to create a foundation for future projects based on Laravel an
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ### [Demo available here!](https://larastruct.herokuapp.com/)
+Login: email: `john.doe@test.com` password: `password`
 
 ## Learning Laravel
 
