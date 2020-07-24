@@ -26,6 +26,14 @@ class JWTAuthController extends Controller
      */
     public function register(Request $request)
     {
+        // disable user registration using config
+        if (env('USER_REGISTRATION_DISABLED', false)) {
+            return response()->json([
+                'message' => 'Feature disabled',
+                'errors' => ['debug' => ['Registration is currently disabled']]
+            ], 422);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|between:2,100',
             'email' => 'required|email|unique:users|max:50',
