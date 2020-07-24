@@ -57,6 +57,16 @@ php artisan jwt:secret
 
 Continue modifying the configuration to match your environment.
 
+
+<details>
+    <summary>Application specific configuration parameters</summary>
+
+| Name                        | Default value | Description |
+| --------------------------- | ------------- |-------------|
+| URL_ENFORCE_SSL             | false         | Force application scheme to use https (Currently not implemented, see .htaccess)|
+| USER_REGISTRATION_DISABLED  | false         | Disable user registration on incoming post-request|
+</details>
+
 ## Useful commands during development
 
 Start a local development server using
